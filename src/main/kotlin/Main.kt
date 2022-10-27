@@ -7,8 +7,8 @@ fun main(args: Array<String>) {
 }
 
 fun singletonTest() {
-    val singletonTestObject1 = SingletonTestObject;
-    val singletonTestObject2 = SingletonTestObject;
+    val singletonTestObject1 = SingletonTestObject
+    val singletonTestObject2 = SingletonTestObject
 
     if (singletonTestObject1.equals(singletonTestObject2)) {
         println("singletonTestObject 1 and 2 is ==")
@@ -16,32 +16,34 @@ fun singletonTest() {
 
     if (singletonTestObject1 == singletonTestObject2) {
         println("singletonTestObject 1 and 2 is equal!")
-        var objectValue1 = singletonTestObject1.testValue;
+        var objectValue1 = singletonTestObject1.testValue
         println("objectValue1 : $singletonTestObject1.$testValue")
-        var objectValue2 = singletonTestObject1.testValue.value;
+        var objectValue2 = singletonTestObject1.testValue.value
         println("objectValue1 : $objectValue2")
     }
 
-    val singletonTestClass1 = SingletonClass;
-    val singletonTestClass2 = SingletonClass;
+    val singletonTestClass1 = SingletonClass
+    val singletonTestClass2 = SingletonClass
 
     if (singletonTestClass1 == singletonTestClass2) {
         println("singletonTestClass 1 and 2 is ==")
-        val classValue1 = singletonTestClass1.testValue;
-        val classValue2 = singletonTestClass2.testValue2.value;
+        val classValue1 = singletonTestClass1.testValue
+        val classValue2 = singletonTestClass2.testValue2.value
 
         if (singletonTestClass1.testValue2.equals(singletonTestClass2.testValue2)) {
-            println("testValue2 is equals!");
+            println("testValue2 is equals!")
         }
     }
 
     if (singletonTestClass1.equals(singletonTestClass2)) {
-        println("singletonTestClass 1 and 2 is equals!");
+        println("singletonTestClass 1 and 2 is equals!")
     }
+
+    val singletonTestClass3 = SingletonClassV2.getInstance("toy")
 }
 
 fun builderTest() {
-    val builderTestData1 = BuilderTestData();
+    val builderTestData1 = BuilderTestData()
     val builderTestData2 = BuilderTestData(
         "test1",
         "test2",
