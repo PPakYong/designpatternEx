@@ -1,25 +1,41 @@
 import SingletonTestObject.testValue
+import kotlinx.coroutines.*
 
-fun main(args: Array<String>) {
+suspend fun main(args: Array<String>) {
     singletonTest()
-    builderTest()
-    abstractFactoryTest()
+//    builderTest()
+//    abstractFactoryTest()
 }
 
-fun singletonTest() {
-    val singletonTestObject1 = SingletonTestObject
-    val singletonTestObject2 = SingletonTestObject
+suspend fun singletonTest() {
+    val singletonTestClass3 = SingletonClassV2.getInstance("toy")
 
-    if (singletonTestObject1.equals(singletonTestObject2)) {
-        println("singletonTestObject 1 and 2 is ==")
+    CoroutineScope(Dispatchers.Default).launch {
+        println("CoroutineScope 1")
+        val singletonTestClass4 = SingletonClassV2.getInstance("toy")
+
+        if (singletonTestClass3 == singletonTestClass4) {
+            println("singletonTestClass 3 and 4 is ==")
+        }
     }
 
-    if (singletonTestObject1 == singletonTestObject2) {
-        println("singletonTestObject 1 and 2 is equal!")
-        var objectValue1 = singletonTestObject1.testValue
-        println("objectValue1 : $singletonTestObject1.$testValue")
-        var objectValue2 = singletonTestObject1.testValue.value
-        println("objectValue1 : $objectValue2")
+    CoroutineScope(Dispatchers.Default).launch {
+        println("CoroutineScope 2")
+
+        val singletonTestObject1 = SingletonTestObject
+        val singletonTestObject2 = SingletonTestObject
+
+        if (singletonTestObject1.equals(singletonTestObject2)) {
+            println("singletonTestObject 1 and 2 is ==")
+        }
+
+        if (singletonTestObject1 == singletonTestObject2) {
+            println("singletonTestObject 1 and 2 is equal!")
+            var objectValue1 = singletonTestObject1.testValue
+            println("objectValue1 : $singletonTestObject1.$testValue")
+            var objectValue2 = singletonTestObject1.testValue.value
+            println("objectValue1 : $objectValue2")
+        }
     }
 
     val singletonTestClass1 = SingletonClass
@@ -39,7 +55,7 @@ fun singletonTest() {
         println("singletonTestClass 1 and 2 is equals!")
     }
 
-    val singletonTestClass3 = SingletonClassV2.getInstance("toy")
+    delay(2000)
 }
 
 fun builderTest() {
@@ -57,7 +73,7 @@ fun builderTest() {
 
     val builderTestData4 = BuilderTestData(
         "test4",
-    "test6",
+        "test6",
         123,
         null,
         SingletonTestObject,
